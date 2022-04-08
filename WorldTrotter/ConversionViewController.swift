@@ -7,13 +7,13 @@ import Foundation
     
 class ConversionViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var celsiusLabel: UILabel!
     @IBOutlet var textField: UITextField!
+    @IBOutlet weak var celsiusTextField: UITextField!
     
     //ViewController Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateCelsiusLabel()
+        updateCelsiusTextField()
     }
     // Keyboard disappears when tapping the screen somewhere else
     @IBAction func dismissKeyboard(_ sender: AnyObject) {
@@ -36,14 +36,14 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         }
     }
     // DELEGATE METHOD : textFieldDidBeginEditing - is called when the user selects the text field
-    // TODO: Add and modify the method to build expectation for the output by changing the celsiusLabel when the input field is selected
+    // Add and modify the method to build expectation for the output by changing the celsiusLabel when the input field is selected
     // modify the celsiusLabel text to be a single question mark
     // modify the celsiusLabel color to be 60% red, 60% green, and 40% blue (refer to the Developer Documentation for UIColor)
    
 
     @IBAction func textFieldDidBeginEditing(_ sender: Any) {
-        celsiusLabel.text = "?"
-   celsiusLabel.textColor = UIColor.init(red: 0.6, green: 0.6, blue: 0.4, alpha: 1.0)
+        celsiusTextField.text = "?"
+   celsiusTextField.textColor = UIColor.init(red: 0.6, green: 0.6, blue: 0.4, alpha: 1.0)
     
     }
     
@@ -58,7 +58,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     //Stored Properties for Fahrenheit Temperature Measurement w/Observer
     var fahrenheitValue: Measurement<UnitTemperature>? {
         didSet { // this property observer will run after the property is assigned a value
-            updateCelsiusLabel()
+            updateCelsiusTextField()
         }
     }
     //Computed Property for Celsius Temperature Measurement (Read only property - getter without setter)
@@ -70,11 +70,11 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         }
     }
     // Helper Functions
-    func updateCelsiusLabel() {
+    func updateCelsiusTextField() {
         if let celsiusValue = celsiusValue {
-            celsiusLabel.text = numberFormatter.string(from: NSNumber(value: celsiusValue.value))
+            celsiusTextField.text = numberFormatter.string(from: NSNumber(value: celsiusValue.value))
         } else {
-            celsiusLabel.text = "???"
+            celsiusTextField.text = "???"
         }
     }
     // Limits the number of decimal places in the output label to 1
