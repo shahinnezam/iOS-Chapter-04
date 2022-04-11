@@ -31,7 +31,7 @@
                                 <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="degrees Celsius" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1J-M3-FYV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="degrees Celsius" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1J-M3-FYV">
                                 <rect key="frame" x="84.5" y="339.5" width="245.5" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -51,11 +51,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Meh-VW-qiG"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vZw-rf-xKP" userLabel="Celsius TextField">
-                                <rect key="frame" x="159" y="431" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vZw-rf-xKP" userLabel="Celsius TextField">
+                                <rect key="frame" x="159" y="274" width="97" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="cTextFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="BWp-sL-Ysd"/>
+                                    <action selector="celsiusFieldEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="btY-28-yPt"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ieJ-Dg-m2k"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431369999995" green="0.95686274510000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -64,9 +68,13 @@
                             <constraint firstItem="nEB-A3-sAJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="50M-hN-aQf"/>
                             <constraint firstItem="caI-Yo-5JC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5h1-dz-MAr"/>
                             <constraint firstItem="nEB-A3-sAJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EdV-2L-oOv"/>
+                            <constraint firstItem="vZw-rf-xKP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="139" id="Rn8-hw-Pkm"/>
                             <constraint firstItem="nEB-A3-sAJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S2w-QJ-WYJ"/>
+                            <constraint firstItem="L1J-M3-FYV" firstAttribute="top" secondItem="vZw-rf-xKP" secondAttribute="bottom" constant="31.5" id="a5h-tQ-I6B"/>
                             <constraint firstItem="HM5-UI-kgl" firstAttribute="top" secondItem="caI-Yo-5JC" secondAttribute="bottom" constant="8" id="dGl-t7-8jS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vZw-rf-xKP" secondAttribute="trailing" constant="138" id="gTa-Jf-wxk"/>
                             <constraint firstItem="HM5-UI-kgl" firstAttribute="centerX" secondItem="caI-Yo-5JC" secondAttribute="centerX" id="jBt-2z-qDW"/>
+                            <constraint firstItem="vZw-rf-xKP" firstAttribute="top" secondItem="HM5-UI-kgl" secondAttribute="bottom" constant="34.5" id="jXq-Me-W2q"/>
                             <constraint firstItem="L1J-M3-FYV" firstAttribute="centerX" secondItem="caI-Yo-5JC" secondAttribute="centerX" id="lDm-VJ-a0w"/>
                             <constraint firstItem="caI-Yo-5JC" firstAttribute="top" secondItem="nEB-A3-sAJ" secondAttribute="bottom" constant="8" id="zHL-7A-dm5"/>
                         </constraints>
@@ -75,8 +83,8 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="celsiusTextField" destination="vZw-rf-xKP" id="D4d-rC-1zP"/>
-                        <outlet property="textField" destination="nEB-A3-sAJ" id="Rex-iT-f5z"/>
+                        <outlet property="cTextField" destination="vZw-rf-xKP" id="AFb-VB-Lbp"/>
+                        <outlet property="fTextField" destination="nEB-A3-sAJ" id="X1w-1p-Y3U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -86,7 +94,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="566" y="316"/>
+            <point key="canvasLocation" x="565.21739130434787" y="315.40178571428572"/>
         </scene>
     </scenes>
 </document>
